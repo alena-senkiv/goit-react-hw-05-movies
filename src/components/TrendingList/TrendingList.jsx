@@ -4,18 +4,19 @@ import { TrendingListItem } from 'components/TrendingListItem/TrendingListItem';
 
 export const TrendingList = () => {
   const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
 
   useEffect(() => {
-    async function fetchItems() {
+    async function fetchTrendingMovies() {
       try {
         const movies = await getTrending();
         setMovies(movies.results);
       } catch (error) {
-        setError(error);
+        // setError(error);
+        console.log(error);
       }
     }
-    fetchItems();
+    fetchTrendingMovies();
   }, []);
 
   return (
