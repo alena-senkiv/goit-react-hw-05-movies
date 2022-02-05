@@ -4,16 +4,29 @@ import { Layout } from 'components/Layout/Layout';
 
 export const App = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+    <>
+      <Layout />
+      <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="movies" element={<MoviesPage />}>
           <Route path=":movieId" element={<MovieDetailsPage />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
-      </Route>
-    </Routes>
+      </Routes>
+    </>
+
+    // <Routes>
+    //   <Route path="/" element={<Layout />}>
+    //     <Route index element={<Home />} />
+    //     <Route path="movies" element={<MoviesPage />}>
+    //       <Route path=":movieId" element={<MovieDetailsPage />}>
+    //         <Route path="cast" element={<Cast />} />
+    //         <Route path="reviews" element={<Reviews />} />
+    //       </Route>
+    //     </Route>
+    //   </Route>
+    // </Routes>
   );
 };
