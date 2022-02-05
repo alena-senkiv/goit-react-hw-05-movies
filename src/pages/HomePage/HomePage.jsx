@@ -1,6 +1,6 @@
 import { TrendingList } from 'components/TrendingList/TrendingList';
 
-export const Home = () => {
+export const HomePage = () => {
   return (
     <>
       <h2>Home</h2>
