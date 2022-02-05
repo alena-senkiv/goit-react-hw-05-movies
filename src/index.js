@@ -7,7 +7,7 @@ import { GlobalStyle } from 'styles/GlobalStyle.styled';
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
-    <BrowserRouter basename={'/'}>
+    <BrowserRouter basename={'/goit-react-hw-05-movies'}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
