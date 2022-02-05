@@ -1,12 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
-import { Home, MoviesPage, MovieDetailsPage, Cast, Reviews } from 'pages';
+// import { Routes, Route } from 'react-router-dom';
+// import { Home, MoviesPage, MovieDetailsPage, Cast, Reviews } from 'pages';
 import { Layout } from 'components/Layout/Layout';
 
 export const App = () => {
   return (
     <>
       <Layout />
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Home />} />
         <Route path="movies" element={<MoviesPage />}>
           <Route path=":movieId" element={<MovieDetailsPage />}>
@@ -14,7 +14,7 @@ export const App = () => {
             <Route path="reviews" element={<Reviews />} />
           </Route>
         </Route>
-      </Routes>
+      </Routes> */}
     </>
 
     // <Routes>
