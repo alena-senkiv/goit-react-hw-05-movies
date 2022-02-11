@@ -2,7 +2,7 @@ import { MovieDetailsCard } from 'components/MovieDetailsCard/MovieDetailsCard';
 import { useState, useEffect } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'services/tmdbApi';
-import { Button } from './MovieDetailsPage.styled';
+import { Button, BackLink } from './MovieDetailsPage.styled';
 
 export const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -30,7 +30,7 @@ export const MovieDetailsPage = () => {
       {loading && <span>Loading...</span>}
       {movie && (
         <>
-          <Button to={location?.state?.from ?? '/'}>Go back</Button>
+          <BackLink to={location?.state?.from ?? '/'}>Go back</BackLink>
           <MovieDetailsCard movieDetails={movie} />
           <div>
             <p>Additional information:</p>

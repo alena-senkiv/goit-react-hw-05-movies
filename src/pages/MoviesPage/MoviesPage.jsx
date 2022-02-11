@@ -22,6 +22,7 @@ export const MoviesPage = () => {
         const movies = await getMoviesSearch(searchQuery);
 
         if (movies.results.length === 0) {
+          setMovies(null);
           toast.info('Sorry, no results were found');
           return;
         }
@@ -37,8 +38,8 @@ export const MoviesPage = () => {
 
   const handleSubmit = query => {
     if (!query.trim()) {
+      setMovies(null);
       toast.info('Please, enter search query.');
-      return;
     }
     setSearchParams({ query });
   };
