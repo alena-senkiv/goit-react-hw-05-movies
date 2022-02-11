@@ -23,6 +23,10 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
     max-width: 100%;
   }
+
+  a{
+    text-decoration: none;
+  }
   ul {
     padding: 0;
     margin: 0;
