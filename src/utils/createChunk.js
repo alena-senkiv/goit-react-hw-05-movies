@@ -5,9 +5,9 @@ export const createChunk = (componentName, folder) => {
 };
 
 // lazy() for named import
-// export const lazyLoader = componentName => {
+// export const lazyLoader =  (componentName, folder) => {
 //   return lazy(() =>
-//     import(`../pages/${componentName}`).then(module => ({
+//     import(`../${folder}/${componentName}`).then(module => ({
 //       default: module.HomePage,
 //     }))
 //   );

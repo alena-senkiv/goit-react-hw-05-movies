@@ -11,7 +11,6 @@ const Reviews = createChunk('Reviews', 'components');
 
 export const App = () => {
   return (
-    // <Suspense fallback="">
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
@@ -23,6 +22,5 @@ export const App = () => {
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
     </Routes>
-    // </Suspense>
   );
 };
