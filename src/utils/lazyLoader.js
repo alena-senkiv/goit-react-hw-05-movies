@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
-export const lazyLoader = componentName => {
-  return lazy(() => import(`../pages/${componentName}`));
+export const lazyLoader = (componentName, folder) => {
+  return lazy(() => import(`../${folder}/${componentName}`));
 };
 
 // lazy() for named import

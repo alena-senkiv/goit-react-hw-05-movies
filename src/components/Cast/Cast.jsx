@@ -5,7 +5,7 @@ import { BASE_URL_IMG } from 'services/tmdbApi';
 import defaultImg from 'images/default_img.png';
 import { Wrapper } from './Cast.styled';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState(null);
 
@@ -44,3 +44,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;

@@ -7,5 +7,3 @@ export * from './MoviesGallery/MoviesGallery';
 export * from './MoviesGalleryItem/MoviesGalleryItem';
 export * from './MovieDetailsCard/MovieDetailsCard';
 export * from './SearchBar/SearchBar';
-export * from './Cast/Cast';
-export * from './Reviews/Reviews';

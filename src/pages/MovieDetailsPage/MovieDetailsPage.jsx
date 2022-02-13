@@ -1,8 +1,7 @@
-import { MovieDetailsCard } from 'components/MovieDetailsCard/MovieDetailsCard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'services/tmdbApi';
-import { Loader, Error } from 'components';
+import { Loader, Error, MovieDetailsCard } from 'components';
 import { Status } from 'utils/stateMachine';
 import { Button, BackLink, AdditionalBlock } from './MovieDetailsPage.styled';
 
@@ -36,6 +35,7 @@ const MovieDetailsPage = () => {
         <>
           <BackLink to={location?.state?.from ?? '/'}>Go back</BackLink>
           <MovieDetailsCard movieDetails={movie} />
+
           <AdditionalBlock>
             <p>Additional information:</p>
             <Button to={'cast'} state={{ from: location?.state?.from ?? '/' }}>
@@ -48,7 +48,9 @@ const MovieDetailsPage = () => {
               Reviews
             </Button>
           </AdditionalBlock>
-          <Outlet />
+          <Suspense fallback="">
+            <Outlet />
+          </Suspense>
         </>
       )}
     </>
