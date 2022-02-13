@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/219.e5580056.chunk.js","mappings":"mLAAO,IAAMA,EAAS,CACpBC,KAAM,OACNC,QAAS,UACTC,SAAU,WACVC,SAAU","sources":["utils/stateMachine.js"],"sourcesContent":["export const Status = {\n  IDLE: 'idle',\n  PENDING: 'pending',\n  RESOLVED: 'resolved',\n  REJECTED: 'rejected',\n};\n"],"names":["Status","IDLE","PENDING","RESOLVED","REJECTED"],"sourceRoot":""}
