@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-export const lazyLoader = (componentName, folder) => {
+export const createChunk = (componentName, folder) => {
   return lazy(() => import(`../${folder}/${componentName}`));
 };
 

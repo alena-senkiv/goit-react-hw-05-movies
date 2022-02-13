@@ -1,13 +1,13 @@
 // import { Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazyLoader } from 'utils/lazyLoader';
+import { createChunk } from 'utils/createChunk';
 import { Layout } from 'components';
 
-const HomePage = lazyLoader('HomePage', 'pages');
-const MoviesPage = lazyLoader('MoviesPage', 'pages');
-const MovieDetailsPage = lazyLoader('MovieDetailsPage', 'pages');
-const Cast = lazyLoader('Cast', 'components');
-const Reviews = lazyLoader('Reviews', 'components');
+const HomePage = createChunk('HomePage', 'pages');
+const MoviesPage = createChunk('MoviesPage', 'pages');
+const MovieDetailsPage = createChunk('MovieDetailsPage', 'pages');
+const Cast = createChunk('Cast', 'components');
+const Reviews = createChunk('Reviews', 'components');
 
 export const App = () => {
   return (
