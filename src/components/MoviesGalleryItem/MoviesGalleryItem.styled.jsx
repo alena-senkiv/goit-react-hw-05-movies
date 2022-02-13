@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Img = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: fill;
   position: absolute;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@ export const Img = styled.img`
 export const Info = styled.div`
   position: relative;
   z-index: 3;
-  color: white;
+  color: ${({ theme: { colors } }) => colors.fontSecondary};
   text-decoration: none;
   opacity: 0;
   transform: translate(30px);
@@ -32,17 +32,16 @@ export const Info = styled.div`
 `;
 
 export const Card = styled.li`
-  width: 200px;
-  height: 300px;
-  border-radius: 15px;
-  padding: 15px;
-  margin: 20px;
-  background: white;
-  position: relative;
   display: flex;
   align-items: flex-end;
+  min-height: 300px;
+  border-radius: 15px;
+  padding: 15px;
+  background: white;
+  position: relative;
   transition: 0.4s ease-out;
-  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: ${({ theme: { colors } }) => colors.shadow};
+
   &:hover {
     transform: translateY(10px);
 

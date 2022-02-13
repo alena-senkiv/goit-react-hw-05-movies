@@ -1,4 +1,5 @@
-import { MoviesGalleryItem } from 'components/MoviesGalleryItem/MoviesGalleryItem';
+import PropTypes from 'prop-types';
+import { MoviesGalleryItem } from 'components';
 import { Wrapper, Title } from './MoviesGallery.styled';
 
 export const MoviesGallery = ({ movies, title, locationState }) => {
@@ -16,4 +17,10 @@ export const MoviesGallery = ({ movies, title, locationState }) => {
       </Wrapper>
     </>
   );
+};
+
+MoviesGallery.propTypes = {
+  title: PropTypes.string,
+  locationState: PropTypes.object.isRequired,
+  movies: PropTypes.array,
 };

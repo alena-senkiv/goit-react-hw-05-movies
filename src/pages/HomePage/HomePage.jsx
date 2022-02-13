@@ -1,36 +1,44 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
 import { getTrending } from 'services/tmdbApi';
-import { MoviesGallery } from 'components/MoviesGallery/MoviesGallery';
+import { MoviesGallery, Loader, Error } from 'components';
+import { Status } from 'utils/stateMachine';
 
-export const HomePage = () => {
-  const [movies, setMovies] = useState([]);
+const HomePage = () => {
+  const [movies, setMovies] = useState(null);
+  const [status, setStatus] = useState(Status.IDLE);
+
   const location = useLocation();
 
   useEffect(() => {
+    setStatus(Status.PENDING);
+
     async function fetchTrendingMovies() {
       try {
         const movies = await getTrending();
         setMovies(movies.results);
-        console.log(movies.results);
+        setStatus(Status.RESOLVED);
       } catch (error) {
-        toast.error('Something went wrong');
         console.log(error);
+        setStatus(Status.REJECTED);
       }
     }
     fetchTrendingMovies();
   }, []);
   return (
     <>
-      {movies && (
+      {status === Status.IDLE && <></>}
+      {status === Status.PENDING && <Loader />}
+      {status === Status.REJECTED && <Error />}
+      {status === Status.RESOLVED && movies && (
         <MoviesGallery
           movies={movies}
           title={'Trending today:'}
           locationState={location}
         />
       )}
-      <ToastContainer position="top-center" autoClose={2000} />
     </>
   );
 };
+
+export default HomePage;

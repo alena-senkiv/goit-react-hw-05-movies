@@ -2,24 +2,26 @@ import { MovieDetailsCard } from 'components/MovieDetailsCard/MovieDetailsCard';
 import { useState, useEffect } from 'react';
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'services/tmdbApi';
-import { Button, BackLink } from './MovieDetailsPage.styled';
+import { Loader, Error } from 'components';
+import { Status } from 'utils/stateMachine';
+import { Button, BackLink, AdditionalBlock } from './MovieDetailsPage.styled';
 
-export const MovieDetailsPage = () => {
+const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(Status.IDLE);
   const location = useLocation();
 
   useEffect(() => {
-    setLoading(true);
+    setStatus(Status.PENDING);
     async function fetchMovieDetails() {
       try {
         const movie = await getMovieDetails(movieId);
         setMovie(movie);
-        console.log(movie);
-        setLoading(false);
+        setStatus(Status.RESOLVED);
       } catch (error) {
         console.log(error);
+        setStatus(Status.REJECTED);
       }
     }
     fetchMovieDetails();
@@ -27,12 +29,14 @@ export const MovieDetailsPage = () => {
 
   return (
     <>
-      {loading && <span>Loading...</span>}
-      {movie && (
+      {status === Status.IDLE && <></>}
+      {status === Status.PENDING && <Loader />}
+      {status === Status.REJECTED && <Error />}
+      {status === Status.RESOLVED && movie && (
         <>
           <BackLink to={location?.state?.from ?? '/'}>Go back</BackLink>
           <MovieDetailsCard movieDetails={movie} />
-          <div>
+          <AdditionalBlock>
             <p>Additional information:</p>
             <Button to={'cast'} state={{ from: location?.state?.from ?? '/' }}>
               Cast
@@ -43,10 +47,12 @@ export const MovieDetailsPage = () => {
             >
               Reviews
             </Button>
-          </div>
+          </AdditionalBlock>
           <Outlet />
         </>
       )}
     </>
   );
 };
+
+export default MovieDetailsPage;

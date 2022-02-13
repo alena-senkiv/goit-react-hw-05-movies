@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getReviews } from 'services/tmdbApi';
+import { ReviewsList } from './Reviews.styled';
 
 export const Reviews = () => {
   const { movieId } = useParams();
@@ -25,16 +26,16 @@ export const Reviews = () => {
   return (
     <>
       {reviews ? (
-        <ol>
-          {reviews.map(review => (
-            <li key={review.id}>
-              <span>{review.author}</span>
-              <p>{review.content}</p>
+        <ReviewsList>
+          {reviews.map(({ id, author, content }) => (
+            <li key={id}>
+              <span> Author: {author}</span>
+              <p>{content}</p>
             </li>
           ))}
-        </ol>
+        </ReviewsList>
       ) : (
-        'No reviews'
+        <p>We don't have any reviews for this movie.</p>
       )}
     </>
   );

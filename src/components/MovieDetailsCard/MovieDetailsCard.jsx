@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import { BASE_URL_IMG } from 'services/tmdbApi';
+import fallback from 'images/fallback.jpg';
 import { CardWrapper, Img, MovieInfo } from './MovieDetailsCard.styled';
 
 export const MovieDetailsCard = ({
@@ -6,7 +8,7 @@ export const MovieDetailsCard = ({
     title,
     release_date,
     genres,
-    overview,
+    overview = '',
     poster_path,
     vote_average,
   },
@@ -15,7 +17,10 @@ export const MovieDetailsCard = ({
   const userScore = vote_average * 10;
   return (
     <CardWrapper>
-      <Img src={`${BASE_URL_IMG}/${poster_path}`} alt={title} />
+      <Img
+        src={poster_path ? `${BASE_URL_IMG}/${poster_path}` : fallback}
+        alt={title}
+      />
       <MovieInfo>
         <h1>
           {title} ({year})
@@ -25,10 +30,26 @@ export const MovieDetailsCard = ({
         <h2>Overview</h2>
         <p>{overview}</p>
         <h2>Genres</h2>
-        {genres.map(genre => (
-          <span key={genre.id}>{genre.name}</span>
+        {genres.map(({ id, name }) => (
+          <span key={id}>{name} </span>
         ))}
       </MovieInfo>
     </CardWrapper>
   );
+};
+
+MovieDetailsCard.propTypes = {
+  movieDetails: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
+    vote_average: PropTypes.number.isRequired,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+      })
+    ),
+  }),
 };

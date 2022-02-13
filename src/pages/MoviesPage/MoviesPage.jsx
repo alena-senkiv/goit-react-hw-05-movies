@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
-
+import { MoviesGallery, Loader, SearchBar } from 'components';
 import { getMoviesSearch } from 'services/tmdbApi';
-import { SearchBar } from 'components/SearchBar/SearchBar';
-import { MoviesGallery } from 'components/MoviesGallery/MoviesGallery';
+import { Status } from 'utils/stateMachine';
 
-export const MoviesPage = () => {
+const MoviesPage = () => {
   const [movies, setMovies] = useState(null);
+  const [status, setStatus] = useState(Status.IDLE);
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get('query');
   const location = useLocation();
@@ -18,19 +18,21 @@ export const MoviesPage = () => {
     }
 
     async function fetchMovies() {
+      setStatus(Status.PENDING);
       try {
         const movies = await getMoviesSearch(searchQuery);
 
         if (movies.results.length === 0) {
-          setMovies(null);
+          setStatus(Status.REJECTED);
           toast.info('Sorry, no results were found');
           return;
         }
 
         setMovies(movies.results);
+        setStatus(Status.RESOLVED);
       } catch (error) {
-        toast.error('Something went wrong');
         console.log(error);
+        setStatus(Status.REJECTED);
       }
     }
     fetchMovies();
@@ -47,7 +49,9 @@ export const MoviesPage = () => {
   return (
     <>
       <SearchBar onSubmit={handleSubmit} />
-      {movies && (
+      {status === Status.IDLE || (status === Status.RESOLVED && <></>)}
+      {status === Status.PENDING && <Loader />}
+      {status === Status.RESOLVED && movies && (
         <MoviesGallery
           movies={movies}
           title={`Search results`}
@@ -58,3 +62,5 @@ export const MoviesPage = () => {
     </>
   );
 };
+
+export default MoviesPage;

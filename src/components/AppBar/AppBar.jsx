@@ -1,6 +1,6 @@
 import { Header, Nav, Link } from '../AppBar/AppBar.styled';
 
-const AppBar = () => {
+export const AppBar = () => {
   return (
     <Header>
       <Nav>
@@ -10,5 +10,3 @@ const AppBar = () => {
     </Header>
   );
 };
-
-export default AppBar;

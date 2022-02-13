@@ -5,7 +5,15 @@ export const Wrapper = styled.ul`
   max-width: calc(100vw - 48px);
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   grid-gap: 16px;
-  margin: 20px auto;
+  margin: auto;
   padding: 0;
   list-style: none;
+
+  & span {
+    font-weight: 500;
+  }
+
+  & img {
+    border-radius: 5px;
+  }
 `;

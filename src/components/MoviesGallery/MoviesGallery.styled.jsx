@@ -1,28 +1,28 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  margin: auto;
+  display: grid;
+  max-width: calc(100% - 30px);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 16px;
+  margin: 20px auto;
+  padding: 0;
 `;
 
 export const Title = styled.h1`
   display: block;
   width: 100%;
-  margin: 20px auto;
-
+  margin: 30px auto;
   padding: 20px;
   text-align: center;
-  background: rgb(2, 0, 36);
+  border-radius: 5px;
+  color: ${({ theme: { colors } }) => colors.fontSecondary};
+  box-shadow: ${({ theme: { colors } }) => colors.shadow};
+  background: ${({ theme: { colors } }) => colors.secondary};
   background: linear-gradient(
     90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(8, 8, 24, 1) 29%,
-    rgba(96, 163, 250, 1) 100%
+    ${({ theme: { colors } }) => colors.secondary} 0%,
+    ${({ theme: { colors } }) => colors.secondary} 29%,
+    ${({ theme: { colors } }) => colors.primary} 100%
   );
-  box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5);
-
-  color: #fff;
-  border-radius: 5px;
 `;

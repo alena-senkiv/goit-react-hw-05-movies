@@ -4,11 +4,20 @@ import { buttonStyles } from 'components/Button/Button.styled';
 
 export const Button = styled(NavLink)`
   &.active {
-    background-color: rgb(2, 0, 36);
+    background-color: ${({ theme: { colors } }) => colors.secondary};
   }
   ${buttonStyles}
+  margin-right: 20px;
 `;
 
 export const BackLink = styled(Link)`
   ${buttonStyles}
+`;
+
+export const AdditionalBlock = styled.div`
+  margin-bottom: 25px;
+  & p {
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
 `;

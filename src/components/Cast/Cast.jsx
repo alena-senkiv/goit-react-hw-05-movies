@@ -14,7 +14,6 @@ export const Cast = () => {
       try {
         const movieCredits = await getCast(movieId);
         setCast(movieCredits.cast);
-        console.log(movieCredits.cast);
       } catch (error) {
         console.log(error);
       }
@@ -34,8 +33,10 @@ export const Cast = () => {
                 }
                 alt={name}
               />
-              {name}
-              <p>Character: {character}</p>
+              <p>{name}</p>
+              <p>
+                <span>Character:</span> {character}
+              </p>
             </li>
           ))}
         </Wrapper>

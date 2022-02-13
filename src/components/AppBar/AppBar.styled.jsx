@@ -7,15 +7,16 @@ export const Header = styled.header`
 export const Nav = styled.nav`
   display: flex;
   gap: 20px;
+  border-bottom: 1px solid ${({ theme: { colors } }) => colors.secondary};
 `;
 
 export const Link = styled(NavLink)`
-  color: rgb(2, 0, 36);
+  color: ${({ theme: { colors } }) => colors.secondary};
 
   font-size: 25px;
   font-weight: 700;
   &.active,
   &:hover {
-    color: #5d9df1;
+    color: ${({ theme: { colors } }) => colors.primary};
   }
 `;
